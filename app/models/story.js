@@ -1,10 +1,10 @@
-module.exports = mongoose => {
-  var schema = mongoose.Schema(
-    {
-      name: String,
-      story: Array
-    }
-  );
+module.exports = (mongoose) => {
+  var schema = mongoose.Schema({
+    name: String,
+    story: Array,
+    storyCoverPage: String,
+    storyDes: String,
+  });
 
   schema.method("toJSON", function () {
     const { __v, _id, ...object } = this.toObject();
