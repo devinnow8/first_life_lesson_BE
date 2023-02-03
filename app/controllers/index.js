@@ -9,7 +9,8 @@ exports.create = (req, res) => {
     !req.body.name ||
     !req.body.story ||
     !req.body.storyCoverPage ||
-    !req.body.storyDes
+    !req.body.storyDes ||
+    !req.body.isPremium
   ) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
@@ -20,15 +21,10 @@ exports.create = (req, res) => {
     story: req.body.story,
     storyCoverPage: req.body.storyCoverPage,
     storyDes: req.body.storyDes,
+    isPremium: !req.body.isPremium,
     // storyType: req.body.storyType,
   });
-  console.log("storyCoverPage====>", {
-    name: req.body.name,
-    story: req.body.story,
-    storyCoverPage: req.body.storyCoverPage,
-    storyDes: req.body.storyDes,
-    // storyType: req.body.storyType,
-  });
+
   // Save story in the database
   story
     .save(story)

@@ -4,6 +4,7 @@ module.exports = (mongoose) => {
     story: Array,
     storyCoverPage: String,
     storyDes: String,
+    isPremium: Boolean,
   });
 
   schema.method("toJSON", function () {
