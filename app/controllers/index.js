@@ -21,8 +21,7 @@ exports.create = (req, res) => {
     story: req.body.story,
     storyCoverPage: req.body.storyCoverPage,
     storyDes: req.body.storyDes,
-    isPremium: !req.body.isPremium,
-    // storyType: req.body.storyType,
+    isPremium: req.body.isPremium,
   });
 
   // Save story in the database
