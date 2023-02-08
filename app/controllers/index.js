@@ -10,7 +10,7 @@ exports.create = (req, res) => {
     !req.body.story ||
     !req.body.storyCoverPage ||
     !req.body.storyDes ||
-    !req.body.isPremium
+    req.body.isPremium
   ) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
@@ -33,43 +33,6 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message: err.message || "Some error occurred while creating the story.",
-      });
-    });
-};
-
-// reorder stories
-exports.reorderStories = (req, res) => {
-  console.log("indadsasdsa");
-  Stories.updateMany([
-    {
-      name: "test 223232 -updated",
-      story: [
-        {
-          id: "a5c9",
-          text: "test 2",
-          imageUrl:
-            "https://firebasestorage.googleapis.com/v0/b/fir-upload-5d39a.appspot.com/o/files%2Fa5c9?alt=media&token=b2e41d55-2471-4c27-aa6e-5cbaa338cdd6",
-          isAddMode: true,
-          isEditMode: false,
-        },
-      ],
-      storyCoverPage:
-        "https://firebasestorage.googleapis.com/v0/b/fir-upload-5d39a.appspot.com/o/files%2F6e90?alt=media&token=30440760-ef12-4dbf-9c6b-7f83c9593abd",
-      storyDes: "test 2",
-      id: "63db7ae18b524d1de10082ec",
-    },
-  ])
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Stories Maybe Stories were not found!`,
-        });
-      } else res.send({ message: "Story was updated successfully." });
-    })
-    .catch((err) => {
-      console.log("err====>", err);
-      res.status(500).send({
-        message: "Error updating Stories",
       });
     });
 };
@@ -143,7 +106,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: "Story was deleted successfully!",
+          message: `${data.name} was deleted successfully!`,
         });
       }
     })
