@@ -10,7 +10,7 @@ exports.create = (req, res) => {
     !req.body.story ||
     !req.body.storyCoverPage ||
     !req.body.storyDes ||
-    req.body.isPremium
+    !req.body.isPremium
   ) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
