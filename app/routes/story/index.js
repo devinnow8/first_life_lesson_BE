@@ -47,6 +47,7 @@ const findAll = async (req, res) => {
 
   try {
     const result = await Stories.find(condition)
+    console.log("res====>", res)
     res.json({ data: result })
 
   } catch (err) {
@@ -153,3 +154,4 @@ storyController.delete("/", deleteAll);
 
 
 module.exports = storyController;
+module.exports.findAll = findAll
