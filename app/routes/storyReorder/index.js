@@ -1,17 +1,15 @@
-const db = require("../db");
+const db = require("../../db");
 const Stories = db.story;
-const StoryItem = db.storyItem;
+const express = require("express");
+const storyReorderController = express.Router();
 
 // reorder stories
-exports.reorderStories = (req, res) => {
+const reorderStories = (req, res) => {
   if (!req.body.stories) {
     return res.status(400).send({
       message: "Data to update can not be empty!",
     });
   }
-  const id = req.params.id;
-  console.log("");
-
   Stories.deleteMany({})
     .then(() => {
       Stories.insertMany(req.body.stories)
@@ -37,19 +35,6 @@ exports.reorderStories = (req, res) => {
     });
 };
 
-exports.reorderPages = (req, res) => {
-  if (!req.body) {
-    return res.status(400).send({
-      message: "Data to update can not be empty!",
-    });
-  }
-  const id = req.params.id;
+storyReorderController.put("/", reorderStories);
 
-  Stories.deleteMany(id, req.body).then((data) => {
-    if (!data) {
-      res.status(404).send({
-        message: `Cannot update Story with id=${id}. Maybe Story was not found!`,
-      });
-    } else res.send({ message: "Story was updated successfully." });
-  });
-};
+module.exports = storyReorderController;

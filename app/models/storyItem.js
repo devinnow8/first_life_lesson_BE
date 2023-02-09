@@ -1,7 +1,7 @@
 module.exports = (mongoose) => {
   var schema = mongoose.Schema({
-    text: String,
-    imageUrl: String,
+    storyName: String,
+    pages: Array,
   });
 
   schema.method("toJSON", function () {

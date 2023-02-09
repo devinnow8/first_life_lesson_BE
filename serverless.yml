@@ -1,0 +1,37 @@
+service: storyBookBE
+frameworkVersion: '3'
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-south-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DescribeTable
+        - dynamodb:DeleteItem
+        - lambda:InvokeFunction
+        - ssm:GetParameters
+        - ssm:GetParameter
+        - cognito-idp:ListUsers
+        - cognito-idp:AdminUpdateUserAttributes
+        - cognito-idp:AdminDeleteUser
+      Resource: '*'
+functions:
+  app:
+    handler: start.run
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+plugins:
+  - serverless-offline
