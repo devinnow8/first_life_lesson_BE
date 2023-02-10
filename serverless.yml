@@ -35,7 +35,11 @@ functions:
           cors: true
 plugins:
   - serverless-offline
+  - serverless-ngrok-tunnel
 
 custom:
   serverless-offline:
     httpPort: 4000
+  ngrokTunnel:
+    tunnels:
+      - port: 4000
