@@ -10,8 +10,7 @@ const create = (req, res) => {
     !req.body.name ||
     !req.body.story ||
     !req.body.storyCoverPage ||
-    !req.body.storyDes ||
-    !req.body.isPremium
+    !req.body.storyDes
   ) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
@@ -46,12 +45,11 @@ const findAll = async (req, res) => {
     : {};
 
   try {
-    const result = await Stories.find(condition)
-    console.log("res====>", res)
-    res.json({ data: result })
-
+    const result = await Stories.find(condition);
+    console.log("res====>", res);
+    res.json({ data: result });
   } catch (err) {
-    console.log("err===>", err)
+    console.log("err===>", err);
   }
 };
 
@@ -134,7 +132,6 @@ const deleteAll = (req, res) => {
     });
 };
 
-
 storyController.post("/create", create);
 
 // Retrieve all stories
@@ -152,6 +149,5 @@ storyController.delete("/:id", deleteItem);
 // Create a new story
 storyController.delete("/", deleteAll);
 
-
 module.exports = storyController;
-module.exports.findAll = findAll
+module.exports.findAll = findAll;
