@@ -22,6 +22,8 @@ const create = (req, res) => {
     storyCoverPage: req.body.storyCoverPage,
     storyDes: req.body.storyDes,
     isPremium: req.body.isPremium,
+    gender: req.body.gender,
+    character: req.body.character,
   });
 
   // Save story in the database
